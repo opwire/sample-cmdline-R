@@ -14,6 +14,12 @@ Change the project home to current working directory:
 cd sample-cmdline-R
 ```
 
+Start the R interactive console:
+
+```shell
+r
+```
+
 Following command in R console to install packages:
 
 ```shell
@@ -30,10 +36,10 @@ Download and extract the latest [`opwire-agent`](https://github.com/opwire/opwir
 Execute the following command:
 
 ```shell
-./opwire-agent -p=8888 --default-command="Rscript example.r"
+./opwire-agent serve -p=8888 --default-command="Rscript example.r"
 ```
 
-Open this URL `http://localhost:8888/run?type=microservice&type=R`:
+Open this URL `http://localhost:8888/$?type=microservice&type=R`:
 
 ![example-output](https://raw.github.com/opwire/sample-cmdline-R/master/docs/assets/images/example.png)
 
@@ -45,7 +51,7 @@ Open this URL `http://localhost:8888/run?type=microservice&type=R`:
 Execute the following command:
 
 ```shell
-./opwire-agent -p=8888 --default-command="Rscript example.r"
+./opwire-agent serve
 ```
 
 #### Valid input (a JSON object)
@@ -55,7 +61,7 @@ Make a HTTP request with `curl`:
 ```curl
 curl -v \
   --request POST \
-  --url 'http://localhost:8888/run?type=microservice&type=R' \
+  --url 'http://localhost:8888/$?type=microservice&type=R' \
   --data '{
   "name": "Opwire",
 	"url": "https://opwire.org/"
@@ -65,7 +71,7 @@ curl -v \
 Result:
 
 ```plain
-> POST /run?type=microservice&type=R HTTP/1.1
+> POST /$?type=microservice&type=R HTTP/1.1
 > Host: localhost:8888
 > User-Agent: curl/7.54.0
 > Accept: */*
